@@ -25,4 +25,8 @@ public class PolicyHoldersService {
         policyHoldersRepository.save(policyHolder);
 
     }
+
+    public void savePolicyHolder(PolicyHolder policyHolder) {
+        policyHoldersRepository.save(policyHolder);
+    }
 }
