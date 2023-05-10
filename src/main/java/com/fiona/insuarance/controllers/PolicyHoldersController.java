@@ -26,10 +26,10 @@ public class PolicyHoldersController {
          policyHoldersService.createPolicyHolder(policyHolder);
     }
 
-    @GetMapping("/getOnePolicyHolder/{id}")
+    @GetMapping("/getOnePolicyHolder/{policyHolderId}")
     //getById
-    public Optional<PolicyHolder> getOnePOlicyHoldersById(@PathVariable Long policyId){
-        return policyHoldersService.getOnePolicyHolder(policyId);
+    public Optional<PolicyHolder> getOnePOlicyHoldersById(@PathVariable Long policyHolderId){
+        return policyHoldersService.getOnePolicyHolder(policyHolderId);
     }
 
     //edit
