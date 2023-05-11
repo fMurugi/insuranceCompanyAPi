@@ -21,5 +21,7 @@ public class PolicyHolder {
     private String lastName;
     private String email;
     private String phoneNumber;
+    private Integer Age;
+    private Boolean hasChronicDisease;
 
 }
