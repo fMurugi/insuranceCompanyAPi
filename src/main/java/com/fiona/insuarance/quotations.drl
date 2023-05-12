@@ -1,0 +1,90 @@
+import com.fiona.insurance.models.PolicyHolder;
+import com.fiona.insurance.models.Quotation;
+
+rule "Premium for Policy Holders without Chronic Disease aged below 25"
+    when
+        $ph : PolicyHolder(age < 25, chronicDisease == false)
+    then
+        Quotation quotation = new Quotation();
+        quotation.setPlanName("Basic Plan");
+        quotation.setPremium("5000");
+        quotation.setPolicyHolder($ph);
+        insert(quotation);
+end
+
+rule "Premium for Policy Holders without Chronic Disease aged 26-45"
+    when
+        $ph : PolicyHolder(age >= 26 && age <= 45, chronicDisease == false)
+    then
+        Quotation quotation = new Quotation();
+        quotation.setPlanName("Standard Plan");
+        quotation.setPremium("10000");
+        quotation.setPolicyHolder($ph);
+        insert(quotation);
+end
+
+rule "Premium for Policy Holders without Chronic Disease aged 46-60"
+    when
+        $ph : PolicyHolder(age >= 46 && age <= 60, chronicDisease == false)
+    then
+        Quotation quotation = new Quotation();
+        quotation.setPlanName("Premium Plan");
+        quotation.setPremium("20000");
+        quotation.setPolicyHolder($ph);
+        insert(quotation);
+end
+
+rule "Premium for Policy Holders without Chronic Disease above 60"
+    when
+        $ph : PolicyHolder(age > 60, chronicDisease == false)
+    then
+        Quotation quotation = new Quotation();
+        quotation.setPlanName("Gold Plan");
+        quotation.setPremium("30000");
+        quotation.setPolicyHolder($ph);
+        insert(quotation);
+end
+
+rule "Premium for Policy Holders with Chronic Disease aged below 25"
+    when
+        $ph : PolicyHolder(age < 25, chronicDisease == true)
+    then
+        Quotation quotation = new Quotation();
+        quotation.setPlanName("Basic Plan");
+        quotation.setPremium("7000");
+        quotation.setPolicyHolder($ph);
+        insert(quotation);
+end
+
+rule "Premium for Policy Holders with Chronic Disease aged 26-45"
+    when
+        $ph : PolicyHolder(age >= 26 && age <= 45, chronicDisease == true)
+    then
+        Quotation quotation = new Quotation();
+        quotation.setPlanName("Standard Plan");
+        quotation.setPremium("15000");
+        quotation.setPolicyHolder($ph);
+        insert(quotation);
+end
+
+rule "Premium for Policy Holders with Chronic Disease aged 46-60"
+    when
+        $ph : PolicyHolder(age >= 46 && age <= 60, chronicDisease == true)
+    then
+        Quotation quotation = new Quotation();
+        quotation.setPlanName("Premium Plan");
+        quotation.setPremium("25000");
+        quotation.setPolicyHolder($ph);
+        insert(quotation);
+end
+
+rule "Premium for Policy Holders with Chronic Disease above 60"
+    when
+        $ph : PolicyHolder(age > 60, chronicDisease == true)
+    then
+        Quotation quotation = new Quotation();
+        quotation.setPlanName("Gold Plan");
+        quotation.setPremium("35000");
+        quotation.setPolicyHolder($ph);
+        insert(quotation);
+end

@@ -53,6 +53,12 @@ public class PolicyHoldersController {
             if (policyHolderUpdate.getPhoneNumber() != null) {
                 policyHolder.setPhoneNumber(policyHolderUpdate.getPhoneNumber());
             }
+            if (policyHolderUpdate.getAge() != null) {
+                policyHolder.setAge(policyHolderUpdate.getAge());
+            }
+            if (policyHolderUpdate.getHasChronicDisease() != null) {
+                policyHolder.setHasChronicDisease(policyHolderUpdate.getHasChronicDisease());
+            }
 
             // Save the updated policyHolder to the database
             policyHoldersService.savePolicyHolder(policyHolder);
