@@ -18,8 +18,12 @@ public class PolicyHoldersController {
     //get all policyHolders
 
     @GetMapping("/getAllPolicyHolders")
-    public List<PolicyHolder> getAllPOlicyHolders(){
-       return policyHoldersService.getAllPolicyHolders();
+//    public List<PolicyHolder> getAllPOlicyHolders(){
+//       return policyHoldersService.getAllPolicyHolders();
+//    }
+
+    public PolicyHolder getAllPolicyHolders(){
+        return policyHoldersService.getAllPolicyHolders();
     }
 
     @PostMapping("/register")

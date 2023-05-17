@@ -1,5 +1,6 @@
 package com.fiona.insuarance.service;
 
+import com.fiona.insuarance.exceptions.PolicyHolderNotFoundException;
 import com.fiona.insuarance.models.PolicyHolder;
 import com.fiona.insuarance.repositories.PolicyHoldersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,13 @@ public class PolicyHoldersService {
         return policyHoldersRepository.findAll();
     }
 
-    public Optional<PolicyHolder> getOnePolicyHolder(@RequestBody Long policyId){
-        return policyHoldersRepository.findById(policyId);
+    public Optional<PolicyHolder> getOnePolicyHolder(@RequestBody Long policyHolderId){
+        Optional<PolicyHolder> policyHolder  = policyHoldersRepository.findById(policyHolderId);
+        if(policyHolder.isPresent()){
+            return  policyHolder;
+        }else {
+            throw  new PolicyHolderNotFoundException("PolicyHolder with id " + policyHolderId+" NOT FOUND");
+        }
     }
 
     public void createPolicyHolder(@RequestBody PolicyHolder policyHolder){

@@ -3,9 +3,11 @@ package com.fiona.insuarance.service;
 import com.fiona.insuarance.models.InsurancePolicy;
 import com.fiona.insuarance.models.Policy;
 import com.fiona.insuarance.models.PolicyHolder;
+import com.fiona.insuarance.models.Quotation;
 import com.fiona.insuarance.repositories.InsurancePolicyRepository;
 import com.fiona.insuarance.repositories.PolicyHoldersRepository;
 import com.fiona.insuarance.repositories.PolicyRepository;
+import com.fiona.insuarance.repositories.QuotationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +25,17 @@ public class PolicyService {
     @Autowired
     private InsurancePolicyRepository insurancePolicyRepository;
 
+    private QuotationRepository quotationRepository;
+
     public Policy createPolicy (Long policyHolderId, Long insuranceId, Policy policy){
         PolicyHolder policyHolder = policyHoldersRepository.findById(policyHolderId).orElseThrow(() ->
                 new IllegalArgumentException("Policy holder not found for id : "+ policyHolderId));
 
         InsurancePolicy insurancePolicy = insurancePolicyRepository.findById(insuranceId)
                 .orElseThrow(() -> new IllegalArgumentException("Insurance policy not found for id: " + insuranceId));
+
+//        Quotation quotation =  quotationRepository.findById(quotationId)
+//                .orElseThrow(()-> new IllegalArgumentException("Quotation  not found for id: " + quotationId) );
 
         LocalDate startDate = LocalDate.now(); // set start date as current date without time
         LocalDate endDate = startDate.plusYears(1); // calculate end date to be one year from start date
